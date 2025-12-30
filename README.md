@@ -1,46 +1,103 @@
-# SkillCreator v3.0
+# SkillCreator v3.1
 
 The ultimate meta-skill for generating best-in-class Claude Code skills.
 
+![Case Study: A System for Professional-Grade AI Development](assets/images/01-case-study-intro.png)
+
 ## Overview
 
-SkillCreator v3.0 uses a 4-phase architecture to produce skills that are comprehensively analyzed, thoroughly specified, cleanly generated, and unanimously approved by a multi-agent synthesis panel.
+SkillCreator uses a rigorous 4-phase architecture to produce skills that are comprehensively analyzed, thoroughly specified, cleanly generated, and unanimously approved by a multi-agent synthesis panel.
+
+![Architecture for Rigor: The 4-Phase Process](assets/images/02-four-phase-process.png)
+
+**Quality is not tested at the end; it is built in at every phase.**
+
+## Quick Start
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    SKILLCREATOR v3.0                             │
-├─────────────────────────────────────────────────────────────────┤
-│ Phase 1: Deep Analysis                                           │
-│   • Regression questioning loop (until exhausted)                │
-│   • 11 thinking lenses applied                                   │
-│   • Expert perspective simulation                                │
-├─────────────────────────────────────────────────────────────────┤
-│ Phase 2: Specification Generation                                │
-│   • XML-structured SKILL_SPEC                                    │
-│   • Explicit WHY statements                                      │
-│   • Success criteria defined                                     │
-├─────────────────────────────────────────────────────────────────┤
-│ Phase 3: Skill Generation                                        │
-│   • Fresh context execution                                      │
-│   • Zero error standard                                          │
-│   • Template-based output                                        │
-├─────────────────────────────────────────────────────────────────┤
-│ Phase 4: Multi-Agent Synthesis                                   │
-│   • Design/Architecture Agent                                    │
-│   • Audience/Usability Agent                                     │
-│   • Evolution/Timelessness Agent                                 │
-│   • Unanimous 3/3 required                                       │
-└─────────────────────────────────────────────────────────────────┘
+SkillCreator: create a skill for automated code review
 ```
 
-## Features
+That's it. The skill will be created autonomously with full analysis, verification, and quality gates.
 
-- **Fully Autonomous** - Provide a goal, skill iterates until best result
-- **Always Maximum Depth** - Every skill gets comprehensive treatment
-- **Evolution-First Design** - Skills must score ≥7/10 on timelessness
-- **Multi-Lens Analysis** - 11 thinking models systematically applied
-- **Regression Questioning** - Loops until 3 consecutive rounds yield no new insights
-- **Multi-Agent Synthesis** - Three Opus agents must unanimously approve
+## The Methodology
+
+### Phase 1: Deep Analysis
+
+Achieve maximum depth before a single line is generated.
+
+![Phase 1: Achieving Maximum Depth](assets/images/03-phase1-deep-analysis.png)
+
+#### The 11 Thinking Lenses
+
+Every problem is systematically analyzed through 11 distinct thinking models:
+
+![The 11 Thinking Lenses](assets/images/04-eleven-thinking-lenses.png)
+
+### Phase 4: Multi-Agent Synthesis
+
+The generated skill is submitted to a panel of three specialized Opus 4.5 agents for evaluation. **Unanimous 3/3 approval is required.**
+
+![Phase 4: AI Peer Review by a Multi-Agent Synthesis Panel](assets/images/05-phase4-synthesis-panel.png)
+
+### Evolution/Timelessness Scoring
+
+Every generated skill is scored by the Evolution Agent and must achieve a score of ≥7/10 to pass.
+
+![The Mandate for Evolution: Quantifying Timelessness](assets/images/06-evolution-scoring.png)
+
+## A Blueprint for Agent-Centric Codebases
+
+![A Blueprint for Agent-Centric Codebases](assets/images/07-directory-structure.png)
+
+```
+skillcreator/
+├── SKILL.md                          # Main skill definition
+├── README.md                         # This file
+├── LICENSE                           # MIT License
+├── references/
+│   ├── regression-questions.md       # Question bank for deep analysis
+│   ├── multi-lens-framework.md       # 11 thinking model application guide
+│   ├── specification-template.md     # XML spec template documentation
+│   ├── evolution-scoring.md          # Timelessness scoring rubric
+│   └── synthesis-protocol.md         # Multi-agent panel protocol
+├── assets/
+│   ├── images/                       # Documentation images
+│   └── templates/
+│       ├── skill-spec-template.xml   # Structured specification template
+│       └── skill-md-template.md      # Output skill markdown template
+└── scripts/
+    ├── validate-skill.py             # Full structural validation
+    ├── quick_validate.py             # Packaging validation
+    └── package_skill.py              # Create .skill distribution files
+```
+
+## Automated Validation
+
+![Enforcing Structure with Automated Validation](assets/images/08-automated-validation.png)
+
+```bash
+# Quick validation (required for packaging)
+python scripts/quick_validate.py /path/to/skill/
+
+# Full structural validation
+python scripts/validate-skill.py /path/to/skill/
+
+# Package for distribution
+python scripts/package_skill.py /path/to/skill/ ./dist
+```
+
+## The SkillCreator Methodology
+
+![The SkillCreator Methodology: Principles in Practice](assets/images/09-methodology-summary.png)
+
+### Key Principles
+
+| Principle | Implementation |
+|-----------|----------------|
+| **Engineer for Agents** | Standardized directory structure, XML-based templates, automated validation |
+| **Systematize Rigor** | 4-phase architecture, regression questioning, 11 thinking lenses, multi-agent synthesis |
+| **Design for Evolution** | Dedicated Evolution agent, mandatory ≥7/10 timelessness score, required extension points |
 
 ## Installation
 
@@ -53,102 +110,18 @@ cp -r skillcreator ~/.claude/skills/
 ## Usage
 
 Invoke with natural language:
-- "create a skill for..."
-- "skillcreator: build a skill that..."
-- "I need a new skill for..."
-
-Or directly:
-```
-Skill(skill="skillcreator")
-```
-
-## Directory Structure
-
-```
-skillcreator/
-├── SKILL.md                          # Main skill definition (679 lines)
-├── README.md                         # This file
-├── LICENSE                           # MIT License
-├── references/
-│   ├── regression-questions.md       # Question bank for deep analysis
-│   ├── multi-lens-framework.md       # 11 thinking model application guide
-│   ├── specification-template.md     # XML spec template documentation
-│   ├── evolution-scoring.md          # Timelessness scoring rubric
-│   └── synthesis-protocol.md         # Multi-agent panel protocol
-├── assets/
-│   └── templates/
-│       ├── skill-spec-template.xml   # Structured specification template
-│       └── skill-md-template.md      # Output skill markdown template
-└── scripts/
-    └── validate-skill.py             # Python validation script
-```
-
-## The 11 Thinking Lenses
-
-| Lens | Question |
-|------|----------|
-| First Principles | What are the fundamental truths here? |
-| Inversion | What would make this fail? |
-| Second-Order Effects | What are the downstream consequences? |
-| Pre-Mortem | It's 6 months later and this failed - why? |
-| Systems Thinking | How does this interact with other parts? |
-| Devil's Advocate | What's the strongest argument against this? |
-| Constraint Analysis | What constraints am I not seeing? |
-| Pareto Analysis | What 20% will deliver 80% of value? |
-| Root Cause | Why? Why? Why? Why? Why? |
-| Comparative Analysis | How do similar solutions handle this? |
-| Opportunity Cost | What am I NOT doing by doing this? |
-
-## Evolution/Timelessness Scoring
-
-All generated skills must score ≥7/10:
-
-| Score | Classification | Lifespan |
-|-------|----------------|----------|
-| 1-2 | Ephemeral | Weeks |
-| 3-4 | Short-lived | 6-12 months |
-| 5-6 | Moderate | 1-2 years |
-| 7-8 | Solid (Required) | 2-4 years |
-| 9-10 | Timeless | 5+ years |
-
-## Multi-Agent Synthesis Panel
-
-Three Opus 4.5 agents evaluate generated skills:
-
-| Agent | Focus | Key Criteria |
-|-------|-------|--------------|
-| Design/Architecture | Structure, patterns | Logical phases, no contradictions |
-| Audience/Usability | Clarity, discoverability | Natural triggers, clear steps |
-| Evolution/Timelessness | Future-proofing | Score ≥7, extension points |
-
-**Unanimous 3/3 approval required.** Max 5 iteration rounds.
-
-## Validation
-
-Run structural validation on any skill:
-
-```bash
-python scripts/validate-skill.py /path/to/skill/
-```
-
-Validates:
-- YAML frontmatter (name, version, description, license, model)
-- Trigger phrases (3-5 required)
-- Process/Phase sections
-- Verification checkboxes
-- Anti-patterns section
-- Extension points
+- `SkillCreator: {goal}` - Full autonomous execution
+- `create skill` - Natural language activation
+- `design skill for {purpose}` - Purpose-first creation
+- `ultimate skill` - Emphasize maximum quality
+- `skillcreator --plan-only` - Generate specification only
 
 ## Requirements
 
 - Claude Code CLI
 - Claude Opus 4.5 model access
-- Python 3.8+ (for validation script)
+- Python 3.8+ (for validation scripts)
 
 ## License
 
 MIT License - see [LICENSE](LICENSE)
-
-## Author
-
-Created with SkillCreator v3.0 methodology.
