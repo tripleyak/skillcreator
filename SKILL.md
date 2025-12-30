@@ -1,54 +1,90 @@
 ---
 name: skillcreator
-description: "Ultimate meta-skill for creating production-ready Claude Code skills. Uses deep iterative analysis with 11 thinking models, regression questioning until exhausted, evolution and timelessness as core lens, and multi-agent synthesis panel for unanimous approval. Includes automation analysis for agentic scripts. Fully autonomous execution at maximum depth produces categorically the best possible skills."
+description: "Intelligent skill router and creator. Analyzes ANY input to recommend existing skills, improve them, or create new ones. Uses deep iterative analysis with 11 thinking models, regression questioning, evolution lens, and multi-agent synthesis panel. Phase 0 triage ensures you never duplicate existing functionality."
 license: MIT
 metadata:
-  version: 3.2.0
+  version: 4.0.0
   model: claude-opus-4-5-20251101
   subagent_model: claude-opus-4-5-20251101
-  domains: [meta-skill, automation, skill-creation, orchestration, agentic]
+  domains: [meta-skill, automation, skill-creation, orchestration, agentic, routing]
   type: orchestrator
-  inputs: [user-goal, domain-hints]
-  outputs: [SKILL.md, references/, scripts/, SKILL_SPEC.md]
+  inputs: [any-input, user-goal, domain-hints]
+  outputs: [SKILL.md, references/, scripts/, SKILL_SPEC.md, recommendations]
 ---
 
-# SkillCreator 3.2 - Ultimate Meta-Skill
+# SkillCreator 4.0 - Intelligent Skill Router & Creator
 
-Create categorically the best possible Claude Code skills.
+Analyzes ANY input to find, improve, or create the right skill.
 
 ---
 
 ## Quick Start
 
-Just tell me what skill you need:
+**Any input works.** SkillCreator will intelligently route to the right action:
 
 ```
+# These all work - SkillCreator figures out what you need:
+
 SkillCreator: create a skill for automated code review
-```
+→ Creates new skill (after checking no duplicates exist)
 
-That's it. The skill will be created autonomously with full analysis, verification, and quality gates.
+help me debug this TypeError
+→ Recommends ErrorExplainer skill (existing)
+
+improve the testgen skill to handle React components better
+→ Enters improvement mode for TestGen
+
+do I have a skill for database migrations?
+→ Recommends DBSchema, database-migration skills
+
+TypeError: Cannot read property 'map' of undefined
+→ Routes to debugging skills (error detected)
+```
 
 ---
 
 ## Triggers
 
+### Creation Triggers
 - `SkillCreator: {goal}` - Full autonomous skill creation
 - `create skill` - Natural language activation
 - `design skill for {purpose}` - Purpose-first creation
 - `ultimate skill` - Emphasize maximum quality
 - `skillcreator --plan-only` - Generate specification without execution
 
+### Routing Triggers (NEW in v4.0)
+- `{any input}` - Analyzes and routes automatically
+- `do I have a skill for` - Searches existing skills
+- `which skill` / `what skill` - Recommends matching skills
+- `improve {skill-name} skill` - Enters improvement mode
+- `help me with` / `I need to` - Detects task and routes
+
 | Input | Output | Quality Gate |
 |-------|--------|--------------|
-| Your goal | Production-ready skill | Unanimous 3/3 panel approval |
+| Any input | Triage → Route → Action | Phase 0 analysis |
+| Explicit create | New skill | Unanimous panel approval |
+| Task/question | Skill recommendation | Match confidence ≥60% |
 
 ---
 
 ## Process Overview
 
 ```
-Your Request
+ANY USER INPUT
+(prompt, error, code, URL, question, task request)
     │
+    ▼
+┌─────────────────────────────────────────────────────┐
+│ Phase 0: SKILL TRIAGE (NEW)                         │
+│ • Classify input type (create/improve/question/task)│
+│ • Scan 250+ skills in ecosystem                     │
+│ • Match against existing skills with confidence %   │
+│ • Route to: USE | IMPROVE | CREATE | COMPOSE        │
+├─────────────────────────────────────────────────────┤
+│         ↓ USE_EXISTING    ↓ IMPROVE      ↓ CREATE   │
+│      [Recommend]      [Load & Enhance] [Continue]   │
+└─────────────────────────────────────────────────────┘
+    │ (if CREATE_NEW or IMPROVE_EXISTING)
     ▼
 ┌─────────────────────────────────────────────────────┐
 │ Phase 1: DEEP ANALYSIS                              │
@@ -78,6 +114,7 @@ Production-Ready Agentic Skill
 ```
 
 **Key principles:**
+- **Phase 0 prevents duplicates** - Always checks existing skills first
 - Evolution/timelessness is the core lens (score ≥ 7 required)
 - Every decision includes WHY
 - Zero tolerance for errors
@@ -93,6 +130,106 @@ Production-Ready Agentic Skill
 | `SkillCreator: {goal}` | Full autonomous execution |
 | `SkillCreator --plan-only {goal}` | Generate specification only |
 | `SkillCreator --quick {goal}` | Reduced depth (not recommended) |
+| `SkillCreator --triage {input}` | Run Phase 0 triage only |
+| `SkillCreator --improve {skill}` | Enter improvement mode for existing skill |
+
+---
+
+## Phase 0: Skill Triage (NEW in v4.0)
+
+Before creating anything, SkillCreator intelligently analyzes your input to determine the best action.
+
+### How It Works
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                        ANY USER INPUT                               │
+│  (prompt, error, code, URL, question, task request, anything)      │
+└────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────────────────┐
+│  Step 1: INPUT CLASSIFICATION                                       │
+│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐       │
+│  │ explicit_create │ │ explicit_improve│ │ skill_question  │       │
+│  │ "create skill"  │ │ "improve skill" │ │ "do I have..."  │       │
+│  └─────────────────┘ └─────────────────┘ └─────────────────┘       │
+│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐       │
+│  │  task_request   │ │  error_message  │ │  code_snippet   │       │
+│  │ "help me with"  │ │ "TypeError..."  │ │ [pasted code]   │       │
+│  └─────────────────┘ └─────────────────┘ └─────────────────┘       │
+└────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────────────────┐
+│  Step 2: SKILL ECOSYSTEM SCAN                                       │
+│  • Load index of 250+ skills (discover_skills.py)                  │
+│  • Match input against all skills with confidence scoring          │
+│  • Identify top matches with reasons                               │
+└────────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────────────────┐
+│  Step 3: DECISION MATRIX                                            │
+│                                                                     │
+│  Match ≥80%  + explicit create → CLARIFY (duplicate warning)       │
+│  Match ≥80%  + other input     → USE_EXISTING (recommend skill)    │
+│  Match 50-79%                  → IMPROVE_EXISTING (enhance match)  │
+│  Match <50%  + explicit create → CREATE_NEW (proceed to Phase 1)   │
+│  Multi-domain detected         → COMPOSE (suggest skill chain)     │
+│  Ambiguous input               → CLARIFY (ask for more info)       │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+### Decision Actions
+
+| Action | When | Result |
+|--------|------|--------|
+| **USE_EXISTING** | Match ≥80% | Recommends existing skill(s) to invoke |
+| **IMPROVE_EXISTING** | Match 50-79% | Loads skill and enters enhancement mode |
+| **CREATE_NEW** | Match <50% | Proceeds to Phase 1 (Deep Analysis) |
+| **COMPOSE** | Multi-domain | Suggests skill chain via SkillComposer |
+| **CLARIFY** | Ambiguous or duplicate | Asks user to clarify intent |
+
+### Triage Script
+
+```bash
+# Run triage on any input
+python scripts/triage_skill_request.py "help me debug this error"
+
+# JSON output for automation
+python scripts/triage_skill_request.py "create a skill for payments" --json
+
+# Examples:
+python scripts/triage_skill_request.py "TypeError: Cannot read property 'map'"
+# → USE_EXISTING: Recommends ErrorExplainer (92%)
+
+python scripts/triage_skill_request.py "create a skill for code review"
+# → CLARIFY: CodeReview skill exists (85%), create anyway?
+
+python scripts/triage_skill_request.py "help me with API and auth and testing"
+# → COMPOSE: Multi-domain, suggests APIDesign + AuthSystem + TestGen chain
+```
+
+### Ecosystem Index
+
+Phase 0 uses a pre-built index of all skills:
+
+```bash
+# Rebuild skill index (run periodically or after installing new skills)
+python scripts/discover_skills.py
+
+# Index location: ~/.cache/skillrecommender/skill_index.json
+# Scans: ~/.claude/skills/, plugins/marketplaces/*, plugins/cache/*
+```
+
+### Integration with Phases 1-4
+
+- **USE_EXISTING**: Exits early, no creation needed
+- **IMPROVE_EXISTING**: Loads existing skill → Phase 1 analyzes gaps → Phase 2-4 enhance
+- **CREATE_NEW**: Full pipeline (Phase 1 → 2 → 3 → 4)
+- **COMPOSE**: Suggests using SkillComposer instead
+- **CLARIFY**: Pauses for user input before proceeding
 
 ---
 
