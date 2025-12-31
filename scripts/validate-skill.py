@@ -3,7 +3,7 @@
 validate-skill.py - Structural validation for Claude Code skills
 
 Validates that a SKILL.md file meets the requirements defined in
-SkillCreator 3.0's quality standards.
+SkillForge 4.0's quality standards.
 
 Usage:
     python validate-skill.py <path-to-skill-directory>
@@ -18,7 +18,7 @@ from typing import List, Tuple, Dict, Any
 
 
 class SkillValidator:
-    """Validates skill files against SkillCreator 3.0 standards."""
+    """Validates skill files against SkillForge 4.0 standards."""
 
     def __init__(self, skill_path: str):
         self.skill_path = Path(skill_path)

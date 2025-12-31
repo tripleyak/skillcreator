@@ -717,12 +717,12 @@ def format_output(result: Result) -> str:
     elif action == Action.IMPROVE_EXISTING:
         target = details.get("target_skill", "unknown")
         lines.append(f"  Improve skill: {target}")
-        lines.append(f"  Command: SkillCreator: improve {target}")
+        lines.append(f"  Command: SkillForge: improve {target}")
 
     elif action == Action.CREATE_NEW:
         purpose = details.get("purpose", "the requested functionality")
         lines.append(f"  Create new skill for: {purpose}")
-        lines.append(f"  Command: SkillCreator: create a skill for {purpose}")
+        lines.append(f"  Command: SkillForge: create a skill for {purpose}")
 
     elif action == Action.COMPOSE:
         chain = details.get("recommended_chain", [])

@@ -1,6 +1,6 @@
 # Evolution Scoring Framework
 
-The Evolution/Timelessness lens is the core evaluative perspective for SkillCreator v3.0. Every skill must score ≥7 on timelessness to be approved.
+The Evolution/Timelessness lens is the core evaluative perspective for SkillForge v4.0. Every skill must score ≥7 on timelessness to be approved.
 
 ## Overview
 
